@@ -1,5 +1,5 @@
+import { get } from "../../lib/requests";
 import { buildUrl } from "../../utils/buildUrl";
-import get from "./get";
 
 export default async (id: string) => {
   const url = buildUrl(`/projects/${id}`);
