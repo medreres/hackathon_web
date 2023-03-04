@@ -2,8 +2,11 @@ import * as React from "react";
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Button, MenuItem, Link, Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Route, useLocation, BrowserRouter as Router, Link as RouterLink } from "react-router-dom";
+import logo from "../assets/logo.png";
+
 
 import GoogleAuth from "./GoogleAuth";
+import Image from "mui-image";
 
 const pages = [
   { name: "Profile", path: "/profile" },
@@ -58,7 +61,7 @@ function ResponsiveAppBar() {
                 fontSize: { md: "24px", xl: "32px" },
                 textDecoration: "none",
               }}>
-              LOGO
+                <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
             </Typography>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -121,7 +124,7 @@ function ResponsiveAppBar() {
                 textDecoration: "none",
                 justifyContent: "center",
               }}>
-              LOGO
+                <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
             </Typography>
             <Box
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}

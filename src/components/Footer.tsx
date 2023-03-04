@@ -1,6 +1,7 @@
 import { Grid, Link, Typography } from "@mui/material";
 import { Box, Container, Stack } from "@mui/system";
 import React from "react";
+import logo from "../assets/logo.png";
 
 export default function Footer() {
   return (
@@ -20,7 +21,7 @@ export default function Footer() {
         <Typography
           variant="h2"
           color="primary_secondary">
-          LOGO
+            <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
         </Typography>
       </Grid>
         <Grid item xs={12} sm={4} spacing={1}>

@@ -26,7 +26,7 @@ export default function ContactBanner() {
       </Typography>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Link href="mailto:logo@gmail.com">
+        <Link href="mailto:cohub@gmail.com">
           <Typography
             variant="h2"
             fontSize={{xs: "24px"}}
@@ -36,7 +36,7 @@ export default function ContactBanner() {
               },
             }}
           >
-              logo@gmail.com
+              cohub@gmail.com
           </Typography>
         </Link>
       </Grid>
