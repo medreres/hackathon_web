@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import Navbar from './components/Navbar'
-import { Routes, Route } from "react-router-dom"
-import Home from './pages/Home'
-import Footer from './components/Footer'
-import Profile from './pages/Profile'
-import CreateProject from './pages/CreateProject'
-import DiscoverProjects from './pages/DiscoverProjects'
-import RateProjects from './pages/RateProjects'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
+import CreateProject from "./pages/CreateProject";
+import DiscoverProjects from "./pages/DiscoverProjects";
+import RateProjects from "./pages/RateProjects";
+import Project from "./pages/Project";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/projects/:projectId"
+          element={<Project />}
         />
         <Route
           path="/profile"
@@ -34,12 +39,11 @@ function App() {
         <Route
           path="/rate-projects"
           element={<RateProjects />}
-        />    
+        />
       </Routes>
       <Footer />
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
