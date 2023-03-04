@@ -7,15 +7,15 @@ export interface IProject {
   description: string;
   tags: string[];
   status: "OPEN" | "IN_PROGRESS" | "CLOSED";
-  team: [
-    {
-      id: string;
-      pic: string;
-    }
-  ];
+  team: ITeamMember[];
   result_link: string;
   pic: string;
   is_author: boolean;
+}
+
+export interface ITeamMember {
+  id: string;
+  pic: string;
 }
 export default function useProject(projectId: string) {
   const [project, setProject] = useState<IProject | null>(null);
@@ -28,5 +28,5 @@ export default function useProject(projectId: string) {
     });
   }, [projectId]);
 
-  return [project, isPending];
+  return [project, isPending] as [typeof project, boolean];
 }

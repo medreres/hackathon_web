@@ -6,13 +6,17 @@ import BackButton from "../components/BackButton";
 import Request from "../features/auth/project/components/Request";
 import Team from "../features/auth/project/components/Team";
 import useProject from "../features/project/hooks/useProject";
+import useRequests from "../features/project/hooks/useRequests";
 
 export default function Project() {
   const { projectId } = useParams();
-  const [project, isPending] = useProject(projectId as string);
-  const test = [1, 2, 3];
+  const [project, isPendingProject] = useProject(projectId as string);
+  const [requests, isPendingRequests] = useRequests(projectId as string);
+
+  console.log(requests);
+
   // TODO pending page
-  if (isPending)
+  if (isPendingProject)
     return (
       <CircularProgress
         // variant="determinate"
@@ -53,20 +57,16 @@ export default function Project() {
         <Stack
           gap={1}
           direction={"row"}>
-          <Chip
-            sx={{
-              color: "#8B949E",
-            }}
-            label="#tag"
-            variant="outlined"
-          />
-          <Chip
-            sx={{
-              color: "#8B949E",
-            }}
-            label="#tag"
-            variant="outlined"
-          />
+          {project?.tags.map((tag) => (
+            <Chip
+              key={tag}
+              sx={{
+                color: "#8B949E",
+              }}
+              label={`#${tag}`}
+              variant="outlined"
+            />
+          ))}
         </Stack>
         <Button
           variant="contained"
@@ -83,15 +83,13 @@ export default function Project() {
         alignItems={"flex-start"}
         gap={2}
         marginBottom={2}>
-        <Typography variant="h1">Project Name</Typography>
+        <Typography variant="h1">{project?.title}</Typography>
         <Typography
           variant="body1"
           textAlign={"start"}>
-          Lorem ipsum dolor sit amet consectetur. At viverra mattis dui nascetur. Neque massa scelerisque euismod
-          pulvinar erat duis non leo et. Bibendum non sagittis laoreet vitae integer quis eu convallis. Sapien rhoncus
-          fringilla pulvinar consectetur.
+          {project?.description}
         </Typography>
-        <Team members={[]} />
+        <Team members={project!.team} />
         <Button
           variant="contained"
           sx={{
@@ -105,11 +103,17 @@ export default function Project() {
         </Button>
       </Stack>
       <Divider />
-      <Stack gap={2}>
-        {test.map((member, index) => (
-          <Request key={index} />
-        ))}
-      </Stack>
+      {/* // TODO if status OPEN and is author then make additional request to fetch all the requests */}
+      {project?.is_author && project.status === "OPEN" && !isPendingRequests && (
+        <Stack gap={2}>
+          {requests!.map((request, index) => (
+            <Request
+              data={request}
+              key={index}
+            />
+          ))}
+        </Stack>
+      )}
     </Grid>
   );
 }

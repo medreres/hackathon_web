@@ -2,8 +2,12 @@ import { Button, IconButton, Typography } from "@mui/material";
 import { Box, Container, Stack } from "@mui/system";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import React from "react";
+import { IRequest } from "../../../../api/projects/fetchRequests";
 
-export default function Request() {
+interface RequestInterface {
+  data: IRequest;
+}
+export default function Request({ data }: RequestInterface) {
   return (
     <Stack
       justifyContent={"space-between"}
@@ -21,13 +25,17 @@ export default function Request() {
           }}
         />
         <Stack alignItems={"center"}>
-          <Typography variant="caption">Name Surname</Typography>
+          <Typography variant="caption">{data.username}</Typography>
           <Stack
             direction="row"
             gap={1}>
-            <Typography variant="body1">#tag</Typography>
-            <Typography variant="body1">#tag</Typography>
-            <Typography variant="body1">#tag</Typography>
+            {data.tags.map((tag) => (
+              <Typography
+                key={tag}
+                variant="body1">
+                #{tag}
+              </Typography>
+            ))}
           </Stack>
         </Stack>
       </Stack>
