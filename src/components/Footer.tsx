@@ -4,9 +4,10 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <Grid container
-      px={{xs: "36px", sm: "48px",  md: "96px" }}
-      py={{xs: "48px"}}
+    <Grid
+      container
+      px={{ xs: "36px", sm: "48px", md: "96px" }}
+      py={{ xs: "48px" }}
       display="flex"
       flex="1"
       justifyContent="space-between"
@@ -14,23 +15,44 @@ export default function Footer() {
       //   backgroundColor: "rgba(0, 58, 250, 0.1)",
       // }}
     >
-  
-      <Grid item xs={12} sm={4}
-        display="flex" pb={{xs: "24px", sm: "0"}}>
+      <Grid
+        item
+        xs={12}
+        sm={4}
+        display="flex"
+        pb={{ xs: "24px", sm: "0" }}>
         <Typography
           variant="h2"
           color="primary_secondary">
           LOGO
         </Typography>
       </Grid>
-        <Grid item xs={12} sm={4} spacing={1}>
-          <Link href="/"><Typography variant="body1">Home</Typography></Link>
-          <Link href="/about-us"><Typography variant="body1">About Us</Typography></Link>
-        </Grid>
-        <Grid item xs={12} sm={4} spacing={1}>
-          <Link href="/features"><Typography variant="body1">Features</Typography></Link>
-          <Link href="/contact"><Typography variant="body1">Contact</Typography></Link>
-        </Grid>
+      <Grid
+        container
+        item
+        xs={12}
+        sm={4}
+        spacing={1}>
+        <Link href="/">
+          <Typography variant="body1">Home</Typography>
+        </Link>
+        <Link href="/about-us">
+          <Typography variant="body1">About Us</Typography>
+        </Link>
+      </Grid>
+      <Grid
+        container
+        item
+        xs={12}
+        sm={4}
+        spacing={1}>
+        <Link href="/features">
+          <Typography variant="body1">Features</Typography>
+        </Link>
+        <Link href="/contact">
+          <Typography variant="body1">Contact</Typography>
+        </Link>
+      </Grid>
       <Typography
         pt={5}
         variant="body1">

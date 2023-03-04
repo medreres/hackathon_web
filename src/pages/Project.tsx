@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Chip, CircularProgress, Divider, Grid, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -10,9 +10,16 @@ import useProject from "../features/project/hooks/useProject";
 export default function Project() {
   const { projectId } = useParams();
   const [project, isPending] = useProject(projectId as string);
-  console.log(project);
-  const test = [1, 2, 3
-  ];
+  const test = [1, 2, 3];
+  // TODO pending page
+  if (isPending)
+    return (
+      <CircularProgress
+        // variant="determinate"
+        color="secondary"
+      />
+    );
+
   return (
     <Grid
       container

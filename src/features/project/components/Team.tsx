@@ -26,6 +26,7 @@ export default function Team({ members }: ITeam) {
       <Box display={"flex"}>
         {arr.map((member, index) => (
           <img
+            key={index}
             height={40}
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
             style={{

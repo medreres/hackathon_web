@@ -5,8 +5,9 @@ import App from './App'
 import './index.css'
 import { ThemeProvider } from "@emotion/react"
 import theme from "./theme"
+import { setAuthToken } from './api'
 
-
+setAuthToken('root1token')
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <ThemeProvider theme={theme}>
