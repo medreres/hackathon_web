@@ -61,11 +61,11 @@ const Header = () => {
               borderRadius: "6px",
               textTransform: "none",
               textAlign: "center",
-              backgroundColor: "#003AFA",
-              border: "2px solid #003AFA",
+              backgroundColor: "#2144F5",
+              border: "2px solid #2144F5",
               ':hover': {
                 bgcolor: '#fff', 
-                color: '#003AFA',
+                color: '#2144F5',
 
               },
               mr: "16px"
@@ -80,16 +80,16 @@ const Header = () => {
               lineHeight: "1.5",
               padding: "14px 20px",
               gap: "10px",
-              color: '#003AFA',
+              color: '#2144F5',
               borderRadius: "6px",
               textTransform: "none",
               textAlign: "center",
               backgroundColor: "#fff",
               border: "2px solid #fff",
               ':hover': {
-                bgcolor: '#003AFA', 
+                bgcolor: '#2144F5', 
                 color: 'white',
-                border: "2px solid #003AFA",
+                border: "2px solid #2144F5",
               },
             }}>
             Tertiary button

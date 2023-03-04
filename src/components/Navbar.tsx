@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
     <Grid
       container
       sx={{ display: "flex", flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0}>
         <Toolbar disableGutters>
           <Grid
             item

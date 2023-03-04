@@ -14,7 +14,7 @@ export default function ContactBanner() {
       style={{
 
         border: "1px solid"
-        // backgroundColor: "#003AFA", 
+        // backgroundColor: "#2144F5", 
       }}
       >
       <Grid item xs={12} md={6} pb={{xs: "48px", md: "0"}}>
@@ -32,7 +32,7 @@ export default function ContactBanner() {
             fontSize={{xs: "24px"}}
             sx={{
               ':hover': {
-                color: '#003AFA', 
+                color: '#2144F5', 
               },
             }}
           >
