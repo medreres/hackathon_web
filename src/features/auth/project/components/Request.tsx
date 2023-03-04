@@ -7,18 +7,20 @@ export default function Request() {
   return (
     <Stack
       justifyContent={"space-between"}
+      alignItems={"center"}
       direction="row">
       <Stack
+        alignItems={"center"}
         direction={"row"}
         gap={2}>
         <img
-          height={64}
+          height={50}
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
           style={{
             borderRadius: "100%",
           }}
         />
-        <Stack>
+        <Stack alignItems={"center"}>
           <Typography variant="caption">Name Surname</Typography>
           <Stack
             direction="row"

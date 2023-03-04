@@ -10,7 +10,9 @@ export default function Team({ members }: ITeam) {
   const arr = [1, 2, 3];
   const status = "OPEN";
   return (
-    <Stack alignItems={"flex-start"}>
+    <Stack
+      alignItems={"flex-start"}
+      gap={1}>
       <Typography
         variant="caption"
         sx={{
@@ -24,7 +26,7 @@ export default function Team({ members }: ITeam) {
       <Box display={"flex"}>
         {arr.map((member, index) => (
           <img
-            height={64}
+            height={40}
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
             style={{
               transform: `translate(${-40 * index}%)`,
