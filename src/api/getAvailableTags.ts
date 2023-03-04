@@ -1,6 +1,6 @@
-import { get } from "../../lib/requests";
-import { buildUrl } from "../../utils/buildUrl";
-import { BASE_URL } from "../../config/default.json";
+import { get } from "../lib/requests";
+import { buildUrl } from "../utils/buildUrl";
+import { BASE_URL } from "../config/default.json";
 
 export async function getAvailableTags() {
   interface ITag {

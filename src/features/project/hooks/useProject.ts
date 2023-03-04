@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { fetchProject } from "../../../api";
 
 export interface IProject {
   id: string;
@@ -17,12 +18,15 @@ export interface IProject {
   is_author: boolean;
 }
 export default function useProject(projectId: string) {
-  const [project, setproject] = useState<IProject | null>(null);
-  const [isPending, setIsPending] = useState(true)
+  const [project, setProject] = useState<IProject | null>(null);
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    
-  }, [projectId])
+    fetchProject(projectId).then((project) => {
+      setProject(project);
+      setIsPending(false);
+    });
+  }, [projectId]);
 
-  return [project, isPending]
+  return [project, isPending];
 }

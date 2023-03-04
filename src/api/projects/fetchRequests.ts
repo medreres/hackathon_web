@@ -1,6 +1,6 @@
-import { buildUrl } from "../../../utils/buildUrl";
-import { BASE_URL } from "../../../config/default.json";
-import { get } from "../../../lib/requests";
+import { buildUrl } from "../../utils/buildUrl";
+import { BASE_URL } from "../../config/default.json";
+import { get } from "../../lib/requests";
 
 export interface IRequest {
   id: string;

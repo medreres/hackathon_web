@@ -1,6 +1,6 @@
-import { BASE_URL } from "../../../config/default.json";
-import { get } from "../../../lib/requests";
-import { buildUrl } from "../../../utils/buildUrl";
+import { BASE_URL } from "../../config/default.json";
+import { get } from "../../lib/requests";
+import { buildUrl } from "../../utils/buildUrl";
 export interface IProject {
   id: string;
   title: string;

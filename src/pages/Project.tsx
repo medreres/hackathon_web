@@ -5,11 +5,14 @@ import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Request from "../features/auth/project/components/Request";
 import Team from "../features/auth/project/components/Team";
+import useProject from "../features/project/hooks/useProject";
 
 export default function Project() {
   const { projectId } = useParams();
-  const test = [1, 2, 3, 4];
-  console.log(projectId);
+  const [project, isPending] = useProject(projectId as string);
+  console.log(project);
+  const test = [1, 2, 3
+  ];
   return (
     <Grid
       container

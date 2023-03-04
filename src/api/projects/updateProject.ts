@@ -1,6 +1,6 @@
-import { BASE_URL } from "../../../config/default.json";
-import { put } from "../../../lib/requests";
-import { buildUrl } from "../../../utils/buildUrl";
+import { BASE_URL } from "../../config/default.json";
+import { put } from "../../lib/requests";
+import { buildUrl } from "../../utils/buildUrl";
 import { ICreateProject } from "./createProject";
 interface IUpdatedProject extends ICreateProject {
   id: string;

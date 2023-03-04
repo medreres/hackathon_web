@@ -1,4 +1,4 @@
-import { setHeaders } from "../../lib/requests";
+import { setHeaders } from "../lib/requests";
 
 export default (authToken: string) => {
   setHeaders({ "Authorization-Google": authToken });

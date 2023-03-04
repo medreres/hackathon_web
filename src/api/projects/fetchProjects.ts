@@ -1,6 +1,6 @@
-import { BASE_URL } from "../../../config/default.json";
-import { get } from "../../../lib/requests";
-import { buildUrl } from "../../../utils/buildUrl";
+import { BASE_URL } from "../../config/default.json";
+import { get } from "../../lib/requests";
+import { buildUrl } from "../../utils/buildUrl";
 import { IProject } from "./fetchProject";
 
 export default async (status: string, tags: string[]): Promise<IProject[]> => {
