@@ -2,6 +2,7 @@ import { Box, Button, Chip, CircularProgress, Divider, Grid, Typography } from "
 import { Container, Stack } from "@mui/system";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { startProject } from "../api";
 import BackButton from "../components/BackButton";
 import Request from "../features/auth/project/components/Request";
 import Team from "../features/auth/project/components/Team";
@@ -11,9 +12,14 @@ import useRequests from "../features/project/hooks/useRequests";
 export default function Project() {
   const { projectId } = useParams();
   const [project, isPendingProject] = useProject(projectId as string);
-  const [requests, isPendingRequests] = useRequests(projectId as string);
+  const [requests, isPendingRequests, removeRequest] = useRequests(projectId as string);
+  const startProjectHandler = () => {
+    startProject(projectId as string).then(() => {
 
-console.log(requests)
+    })
+  }
+
+  console.log(project?.pic)
 
   // TODO pending page
   if (isPendingProject)
@@ -47,7 +53,7 @@ console.log(requests)
       <img
         // width={1072}
         height={250}
-        src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+        src={project?.pic || "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"}
         alt="placeholder"
       />
       <Box
@@ -90,17 +96,20 @@ console.log(requests)
           {project?.description}
         </Typography>
         <Team members={project!.team} />
-        <Button
-          variant="contained"
-          sx={{
-            color: "#8B949E",
-            backgroundColor: "#D9D9D9",
-            borderRadius: 5,
-            textTransform: "none",
-            px: 5,
-          }}>
-          Start Project
-        </Button>
+        {project?.author && project?.status === "OPEN" && (
+          <Button
+          onClick={startProjectHandler}
+            variant="contained"
+            sx={{
+              color: "#8B949E",
+              backgroundColor: "#D9D9D9",
+              borderRadius: 5,
+              textTransform: "none",
+              px: 5,
+            }}>
+            Start Project
+          </Button>
+        )}
       </Stack>
       <Divider />
       {/* // TODO if status OPEN and is author then make additional request to fetch all the requests */}
@@ -108,6 +117,7 @@ console.log(requests)
         <Stack gap={2}>
           {requests?.map((request, index) => (
             <Request
+              remove={removeRequest}
               data={request}
               key={index}
             />

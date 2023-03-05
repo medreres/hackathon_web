@@ -6,6 +6,10 @@ export default function useRequests(projectId: string) {
   const [requests, setRequests] = useState<IRequest[] | null>(null);
   const [isPending, setIsPending] = useState(true);
 
+  const removeRequest = (id: string) => {
+    setRequests((prevState) => prevState!.filter((req) => req.id !== id));
+  };
+
   useEffect(() => {
     fetchProjectRequests(projectId).then((request) => {
       setRequests(request);
@@ -13,5 +17,5 @@ export default function useRequests(projectId: string) {
     });
   }, [projectId]);
 
-  return [requests, isPending] as [typeof requests, boolean];
+  return [requests, isPending, removeRequest] as [typeof requests, boolean, typeof removeRequest];
 }

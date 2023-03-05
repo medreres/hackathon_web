@@ -3,12 +3,28 @@ import { Box, Container, Stack } from "@mui/system";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import React from "react";
 import { IRequest } from "../../../../api/projects/fetchRequests";
+import { acceptRequest, rejectRequest } from "../../../../api";
 
 interface RequestInterface {
   data: IRequest;
+  remove: (id: string) => void;
 }
-export default function Request({ data }: RequestInterface) {
-  console.log('requesy')
+export default function Request({ data, remove }: RequestInterface) {
+  const handleAccept = () => {
+    acceptRequest(data.id).then(() => {
+      remove(data.id);
+    });
+  };
+
+  const removeHandler = () => {
+    // TODO reason modal
+    rejectRequest(data.id, "test").then(() => {
+      remove(data.id);
+    });
+  };
+
+  // console.log(first)
+
   return (
     <Stack
       justifyContent={"space-between"}
@@ -45,6 +61,7 @@ export default function Request({ data }: RequestInterface) {
         gap={1}
         alignItems={"center"}>
         <Button
+          onClick={handleAccept}
           variant="contained"
           sx={{
             color: "#000",
@@ -56,7 +73,9 @@ export default function Request({ data }: RequestInterface) {
           Accept Request
         </Button>
         <Button
+          onClick={removeHandler}
           variant="outlined"
+          color="warning"
           sx={{
             color: "#8B949E",
             // backgroundColor: "#D9D9D9",
