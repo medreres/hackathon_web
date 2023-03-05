@@ -68,7 +68,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   //   return () => clearTimeout(cleanup);
   // }, [profile]);
 
-  console.log(idToken);
+  // console.log(idToken);
 
   return (
     <AuthContext.Provider

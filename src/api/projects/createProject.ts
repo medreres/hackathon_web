@@ -10,10 +10,10 @@ export interface ICreateProject {
 /**
  * @returns id of created project
  */
-export default async (authToken: string, payload: ICreateProject): Promise<string> => {
+export default async (payload: ICreateProject): Promise<string> => {
   const url = buildUrl(`/projects`, BASE_URL);
   return post(url.toString(), {
     ...payload,
-    "Authorization-Google": authToken,
-  }).then(({ data }) => data as string);
+    // "Authorization-Google": authToken,
+  }).then(({ data }) => data.id as string);
 };

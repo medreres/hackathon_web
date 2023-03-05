@@ -11,10 +11,12 @@ export default function useRequests(projectId: string) {
   };
 
   useEffect(() => {
-    fetchProjectRequests(projectId).then((request) => {
-      setRequests(request);
-      setIsPending(false);
-    });
+    try {
+      fetchProjectRequests(projectId).then((request) => {
+        setRequests(request);
+        setIsPending(false);
+      });
+    } catch (error) {}
   }, [projectId]);
 
   return [requests, isPending, removeRequest] as [typeof requests, boolean, typeof removeRequest];

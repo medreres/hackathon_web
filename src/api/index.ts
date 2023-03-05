@@ -21,3 +21,4 @@ export { default as fetchUser } from "./user/fetchUser";
 
 // saving user token
 export { default as setAuthToken } from "./setAuthToken";
+export { default as fetchAvailableTags } from "./fetchAvailableTags";

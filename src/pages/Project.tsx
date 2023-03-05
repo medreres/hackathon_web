@@ -1,23 +1,38 @@
 import { Box, Button, Chip, CircularProgress, Divider, Grid, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { startProject } from "../api";
+import { createRequest, startProject } from "../api";
 import BackButton from "../components/BackButton";
 import Request from "../features/auth/project/components/Request";
 import Team from "../features/auth/project/components/Team";
 import useProject from "../features/project/hooks/useProject";
 import useRequests from "../features/project/hooks/useRequests";
+import LoadingButton from "@mui/lab/LoadingButton";
+import CheckIcon from "@mui/icons-material/Check";
+import SendIcon from "@mui/icons-material/Send";
+import { useAuthContext } from "../features/auth/context/auth-context";
 
 export default function Project() {
   const { projectId } = useParams();
+  const { idToken } = useAuthContext();
   const [project, isPendingProject] = useProject(projectId as string);
-  // const [requests, isPendingRequests, removeRequest] = useRequests(projectId as string);
+  const [requests, isPendingRequests, removeRequest] = useRequests(projectId as string);
   const startProjectHandler = () => {
     startProject(projectId as string).then(() => {});
   };
 
-  // console.log(project)
+  const [isRequestPending, setIsRequestPending] = useState(false);
+  const [isSentSuccessfully, setIsSentSuccessfully] = useState(false);
+  const sendRequestHadler = () => {
+    setIsRequestPending(true);
+    createRequest(projectId as string).then(() => {
+      setIsRequestPending(false);
+      setIsSentSuccessfully(true);
+    });
+  };
+
+  console.log(project);
 
   const getVariant = (status: string) => {
     switch (status) {
@@ -124,10 +139,39 @@ export default function Project() {
             Start Project
           </Button>
         )}
+        {idToken && project!.author === false && project!.status === "OPEN" && (
+          <>
+            {/* {!isRequestPending && (
+              <Button
+                onClick={sendRequestHadler}
+                variant="contained"
+                sx={{
+                  color: "#8B949E",
+                  backgroundColor: "#D9D9D9",
+                  borderRadius: 5,
+                  textTransform: "none",
+                  px: 5,
+                }}>
+                Send Request
+              </Button>
+            )} */}
+            {/* {isRequestPending && ( */}
+            <LoadingButton
+              size="small"
+              startIcon={isSentSuccessfully ? "Sent Successfully" : "Send Request"}
+              onClick={sendRequestHadler}
+              endIcon={isSentSuccessfully ? <CheckIcon /> : <SendIcon />}
+              loading={isRequestPending}
+              loadingPosition="end"
+              variant="contained"
+              color={isSentSuccessfully ? "success" : "primary"}
+            />
+          </>
+        )}
       </Stack>
       <Divider />
       {/* // TODO if status OPEN and is author then make additional request to fetch all the requests */}
-      {/* {project?.author && project?.status === "OPEN" && !isPendingRequests && (
+      {project?.author && project?.status === "OPEN" && !isPendingRequests && (
         <Stack gap={2}>
           {requests?.map((request, index) => (
             <Request
@@ -137,7 +181,7 @@ export default function Project() {
             />
           ))}
         </Stack>
-      )} */}
+      )}
     </Grid>
   );
 }

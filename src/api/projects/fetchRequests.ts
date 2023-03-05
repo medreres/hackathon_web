@@ -12,5 +12,5 @@ export default async (projectId: string): Promise<IRequest[]> => {
   const url = buildUrl(`/requests/for_project`, BASE_URL, {
     project_id: projectId,
   });
-  return get(url.toString()).then(({ data }) => data as IRequest[]);
+  return get(url.toString()).then(({ data }) => data as IRequest[]).catch(err => err)
 };
