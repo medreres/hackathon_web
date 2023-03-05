@@ -65,14 +65,6 @@ const Profile = () => {
     },
   ];
 
-  const [tabValue, setTabValue] = useState(0);
-
-  const handleChange = (event: any, newValue: any) => {
-    setTabValue(newValue);
-  };
-
-  const [activeTab, setActiveTab] = useState("projects");
-
   return (
     <Grid container py="72px" px={{ xs: "36px", sm: "48px", md: "96px" }}>
       <Grid item xs={12} md={4} direction="column" >
@@ -174,38 +166,7 @@ const Profile = () => {
         </Box>
       </Grid>
       <Grid item xs={12} md={8}>
-          <Tabs value={tabValue} onChange={handleChange}>
-            <Tab label="Projects" sx={{ '&.Mui-selected': { color: '#2144F5;' }, pl: {xs: "0", md:"24px"}, fontWeight: "700", fontSize: "24px", mr: {xs: "0", md:"36px"}, color: "#9498AD" }} />
-            <Tab label="Your Requests" sx={{ '&.Mui-selected': { color: '#2144F5;', }, fontWeight: "700", fontSize: "24px", color: 
-  "#9498AD"}} />
-          </Tabs>
-        {tabValue === 0 && (
-          <Box>  
-            <Box display="flex" flexDirection="row" alignItems="center" flexGrow="1" px={{xs: "0", md: "24px"}} py="24px">  
-              <IconButton sx={{border: "1px solid", borderRadius: "50%", mr: "36px" }}>
-                <AddIcon sx={{ height: "20px", width: "20px", color: "#0A0908", margin: "30px" }}  />
-              </IconButton>
-              <Box textAlign="left" >
-                <Typography sx={{ 
-                  fontWeight: "700",
-                  fontSize: "24px",
-                }}>
-                  Create Project
-                </Typography>
-                <Typography 
-                  sx={{ 
-                    fontWeight: "500",
-                    fontSize: "16px",
-                    color: "#9498AD"
-                  }}
-                >
-                  Add Project
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ px: {xs: "0", md: "24px"}, py: "24px", display: "flex", justifyContent: "flex-end" }}>
-              <SelectForm />
-            </Box>
+          <Typography sx={{ pl: {xs: "0", md:"24px"}, fontWeight: "700", fontSize: "32px", color: "#0A0908", mb: "24px", textAlign: "left" }}>Projects</Typography>
             <Box padding="0">
             {projects.map(project => (
               <ProjectCard  
@@ -218,13 +179,6 @@ const Profile = () => {
 
             ))}
             </Box>
-          </Box>
-        )}
-        {tabValue === 1 && (
-          <Box>
-            <Typography variant="h5">Your Requests Tab Content</Typography>
-          </Box>
-        )}
       </Grid>
     </Grid>
   )

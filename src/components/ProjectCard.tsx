@@ -22,10 +22,12 @@ const ProjectCard = ({ image, name, description, status }: ProjectCardProps ) =>
   };
 
   return (
-    <Card sx={{ display: 'flex', width: "100%", px: {xs: "0", md: "24px"}, py: "24px", flexDirection: {xs: "column", sm: "row"}}} elevation={0}>
-      <img src={image} alt={name} style={{ minWidth: "190px" }} />
-      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: "start" }}>
-        <CardContent sx={{ flexGrow: 1, minWidth: "100%", textAlign: "left", ml: {xs: "0", sm: "36px"} }}>
+    <Card sx={{ display: 'flex', width: "100%", flexGrow: 1, px: {xs: "0", md: "24px"}, py: "24px", flexDirection: {xs: "column", sm: "row"}}} elevation={0}>
+      <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', alignItems: "start", width: {xs: "100%", sm: "190px"} }}>
+        <img src={image} alt={name} style={{ width: "100%", height: "auto" }} />
+      </Box>
+      <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', alignItems: "start" }}>
+        <CardContent sx={{ flexGrow: 1, width: "100%", textAlign: "left", ml: {xs: "0", sm: "36px"} }}>
           <Typography component="h2" sx={{ fontWeight: "700", fontSize: "24px", mb: 0.5, color: "#2144F5" }}>
             {name}
           </Typography>

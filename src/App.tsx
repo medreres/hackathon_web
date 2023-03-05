@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import CreateProject from './pages/CreateProject'
 import DiscoverProjects from './pages/DiscoverProjects'
 import RateProjects from './pages/RateProjects'
+import UserProfile from './pages/UserProfile'
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
         <Route
           path="/rate-projects"
           element={<RateProjects />}
+        /> 
+        <Route
+          path="/user-profile"
+          element={<UserProfile />}
         />    
       </Routes>
       <Footer />
