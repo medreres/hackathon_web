@@ -1,6 +1,8 @@
-import { Box, Button, Container, Input, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, Button, Container, Input, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
+import { WithContext as ReactTags } from 'react-tag-input';
+
 
 const CreateProject = () => {
   const [file, setFile] = useState(null);
@@ -27,6 +29,27 @@ const CreateProject = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // Add logic here to send data to backend
+  };
+
+  const options = [
+    { value: '1', label: 'Tag 1' },
+    { value: '2', label: 'Tag 2' },
+    { value: '3', label: 'Tag 3' },
+    { value: '4', label: 'Tag 4' },
+  ];
+
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const handleTagSelection = (event, values) => {
+    setSelectedTags(values);
+  };
+
+  const handleSaveChanges = () => {
+    const requestBody = {
+      tags: selectedTags.map(tag => tag.value),
+    };
+    // send the requestBody to the backend
+    console.log(requestBody);
   };
 
   return (
@@ -62,33 +85,41 @@ const CreateProject = () => {
           </Button>
         </label>
       </Box>
+      <Autocomplete
+        multiple
+        id="tags-outlined"
+        options={options}
+        getOptionLabel={(option) => option.label}
+        onChange={handleTagSelection}
+        sx={{width: "50%"}}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            // label="#add needed skills"
+            placeholder="#add needed skills"
+            sx={{ mb: "24px", borderRadius: "2px" }}
+          />
+        )}
+      />   
       <TextField
-        label="Hashtags"
-        placeholder="#add needed skills"
-        variant="outlined"
-        value={hashtags}
-        onChange={handleHashtagsChange}
-        sx={{ mb: "24px", borderRadius: "2px", width: "50%" }}
-      />
-      <TextField
-        label="Project Name"
-        placeholder="Enter project name"
+        placeholder="Add Title"
         variant="outlined"
         fullWidth
         value={name}
         onChange={handleNameChange}
         sx={{ mb: "24px", color: "#2144F5" }}
+        
       />
       <TextField
-        label="Project Description"
-        placeholder="Enter project description"
+        placeholder="Add project description"
         variant="outlined"
         fullWidth
         multiline
         rows={4}
         value={description}
         onChange={handleDescriptionChange}
-        sx={{ mb: 2 }}
+        sx={{ mb: "24px" }}
       />
       <Button variant="outlined" onClick={handleSubmit} 
       sx={{
