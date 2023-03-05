@@ -52,7 +52,6 @@ function ResponsiveAppBar() {
             py="16px"
             px={{ xs: "36px", sm: "48px", md: "96px" }}>
             <Typography
-              variant="h6"
               noWrap
               component="a"
               href="/"
@@ -60,9 +59,6 @@ function ResponsiveAppBar() {
               sx={{
                 mr: { md: 1, xl: 2 },
                 display: { xs: "none", md: "flex" },
-                fontWeight: 800,
-                fontSize: { md: "24px", xl: "32px" },
-                textDecoration: "none",
               }}>
                 <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
             </Typography>
@@ -91,7 +87,7 @@ function ResponsiveAppBar() {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
-                  color: "#171627",
+                  color: "#0A0908",
                 }}
                 //
               >
@@ -99,12 +95,17 @@ function ResponsiveAppBar() {
                   <MenuItem
                     key={page.name}
                     onClick={handleCloseNavMenu}
-                    color="#171627">
+                  >
                     <Button href={page.path}>
                       <Typography
-                        textAlign="center"
-                        fontWeight="500"
-                        textTransform="none">
+                        sx={{
+                          textAlign: "center",
+                          textSize: "16px",
+                          fontWeight: "600",
+                          textTransform: "none",
+                          color: "#0A0908"
+                        }} 
+                      >
                         {page.name}
                       </Typography>
                     </Button>
@@ -118,13 +119,10 @@ function ResponsiveAppBar() {
               noWrap
               component="a"
               href="/"
-              color="#171627"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontWeight: 800,
-                textDecoration: "none",
                 justifyContent: "center",
               }}>
                 <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
@@ -143,9 +141,13 @@ function ResponsiveAppBar() {
                     my: 2,
                     textDecoration: "none",
                     display: "flex",
-                    justifyContent: "center",
+                    textAlign: "center",
+                    textSize: "16px",
+                    fontWeight: "600",
                     textTransform: "none",
+                    justifyContent: "center",
                     margin: { md: "0 8px", xl: "0 32px" },
+                    color: "#0A0908"
                   }}>
                   {/* <Link
                   // LinkComponent={<RouterLink to={page.path} />}

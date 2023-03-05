@@ -1,10 +1,8 @@
-import { Avatar, Box, Button, ButtonGroup, FormControl, Grid, Grow, Icon, IconButton, InputLabel, MenuItem, Select, Tab, Tabs, Typography } from '@mui/material'
-import Image from 'mui-image'
 import React, { useState } from 'react'
+import { Avatar, Box, Button, ButtonGroup, FormControl, Grid, Grow, Icon, IconButton, InputLabel, MenuItem, Select, Tab, Tabs, Typography } from '@mui/material'
 import { Telegram, LinkedIn, GitHub } from '@mui/icons-material';
 import { Add as AddIcon } from '@mui/icons-material';
 import ProjectCard from '../components/ProjectCard';
-import SelectForm from '../components/SelectForm';
 import FilterByStatus from '../components/FilterByStatus';
 import RequestCard from '../components/RequestCard';
 
@@ -62,8 +60,9 @@ const Profile = () => {
       id: 5,
       name: "Project 1",
       description: "Description of Project 1",
-      status: "In Progress",
-      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg"
+      status: "Rejected",
+      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
+      feedback: "Rejected"
     },
   ];
 
@@ -76,7 +75,7 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("projects");
 
   return (
-    <Grid container py="72px" px={{ xs: "36px", sm: "48px", md: "96px" }}>
+    <Grid container py="72px" px={{ xs: "36px", sm: "48px", md: "96px" }} spacing={8}>
       <Grid item xs={12} md={4} direction="column" >
         <Box display="flex" flexDirection="column" alignItems="center" textAlign="center" mb="48px">
           <Avatar
@@ -233,6 +232,7 @@ const Profile = () => {
                 name={project.name}
                 description={project.description}
                 status={project.status}
+                feedback={project.feedback}
               />
             </Box>
           ))}

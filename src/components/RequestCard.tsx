@@ -1,4 +1,5 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material"
+import { Box, Button, Card, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from "@mui/material"
+import { useState } from "react";
 import approved from "../assets/approved.png"
 import pending from "../assets/pending.png"
 import rejected from "../assets/rejected.png"
@@ -7,23 +8,34 @@ interface RequestCardProps {
   name: string;
   status: string;
   description: string;
+  feedback: string | null;
 }
 
-const RequestCard = ({ name, status, description }: RequestCardProps ) => {
+const RequestCard = ({ name, status, description, feedback }: RequestCardProps ) => {
   let statusIcon;
 
-    switch (status) {
-      case 'In Progress':
-        statusIcon = pending;
-        break;
-      case 'Completed':
-        statusIcon = approved;
-        break;
-      default:
-        statusIcon = rejected;
-        break;
-    }
-  
+  switch (status) {
+    case 'In Progress':
+      statusIcon = pending;
+      break;
+    case 'Completed':
+      statusIcon = approved;
+      break;
+    case 'Rejected':
+      statusIcon = rejected;
+      break;
+  }
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <Card sx={{ display: 'flex', width: "100%", flexGrow: 1, alignItems: "center", px: {xs: "0", md: "24px"}, py: "24px", flexDirection: "row", flexWrap: "nowrap"}} elevation={0}>
@@ -38,6 +50,46 @@ const RequestCard = ({ name, status, description }: RequestCardProps ) => {
           <Typography sx={{ mb: 1, fontWeight: "500", fontSize: "16px", color: "#9498AD" }}>
             {description}
           </Typography>
+          {status === 'Rejected' && feedback && (
+            <Button
+              variant="outlined"
+              onClick={handleClickOpen} 
+              sx={{
+                fontSize: "16px",
+                lineHeight: "1.5",
+                fontWeight: 600,
+                padding: "8px 2px",
+                color: "#0A0908",
+                mt: "16px",
+                borderRadius: "36px",
+                textTransform: "capitalize",
+                textAlign: "center",
+                backgroundColor: "#fff",
+                border: "1px solid #0A0908",
+                width: "250px",
+                ":hover": {
+                  // bgcolor: "#2144F5",
+                  // color: "white",
+                  border: "1px solid #0A0908",
+                },
+              }}>
+              View Feedback
+            </Button>          
+          )}
+
+        <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Feedback </DialogTitle>
+        <DialogContent>
+          <DialogContentText>{feedback}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} sx={{color: 
+"#2144F5"}}>
+            ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+        
         </CardContent>
       </Box>
     </Card>

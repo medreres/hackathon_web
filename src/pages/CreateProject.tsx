@@ -215,8 +215,9 @@ const CreateProject = () => {
         variant="outlined"
         onClick={handleSubmit}
         sx={{
-          fontSize: "24px",
+          fontSize: "16px",
           lineHeight: "1.5",
+          fontWeight: 600,
           padding: "14px 20px",
           color: "#0A0908",
           borderRadius: "36px",
