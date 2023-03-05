@@ -334,7 +334,7 @@ const Profile = () => {
               </Box>
             </Box>
             <Box sx={{ px: { xs: "0", md: "24px" }, py: "24px", display: "flex", justifyContent: "flex-end" }}>
-              <SelectForm />
+              <FilterByStatus />
             </Box>
             <Box padding="0">
               {isProjectsPending && <CircularProgress color="secondary" />}
