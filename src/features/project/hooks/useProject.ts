@@ -10,7 +10,7 @@ export interface IProject {
   team: ITeamMember[];
   result_link: string;
   pic: string;
-  is_author: boolean;
+  author: boolean;
 }
 
 export interface ITeamMember {

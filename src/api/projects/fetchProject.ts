@@ -15,7 +15,7 @@ export interface IProject {
   ];
   result_link: string;
   pic: string;
-  is_author: boolean;
+  author: boolean;
 }
 export default async (id: string): Promise<IProject> => {
   const url = buildUrl(`/projects/${id}`, BASE_URL);

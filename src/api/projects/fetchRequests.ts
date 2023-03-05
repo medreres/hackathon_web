@@ -6,7 +6,7 @@ export interface IRequest {
   id: string;
   user_id: string;
   username: string;
-  tags: string[];
+  skills: string[];
 }
 export default async (projectId: string): Promise<IRequest[]> => {
   const url = buildUrl(`/requests/for_project`, BASE_URL, {

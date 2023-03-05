@@ -8,6 +8,7 @@ interface RequestInterface {
   data: IRequest;
 }
 export default function Request({ data }: RequestInterface) {
+  console.log('requesy')
   return (
     <Stack
       justifyContent={"space-between"}
@@ -29,7 +30,7 @@ export default function Request({ data }: RequestInterface) {
           <Stack
             direction="row"
             gap={1}>
-            {data.tags.map((tag) => (
+            {data.skills.map((tag) => (
               <Typography
                 key={tag}
                 variant="body1">

@@ -7,8 +7,8 @@ export default function useRequests(projectId: string) {
   const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
-    fetchProjectRequests(projectId).then((project) => {
-      setRequests(project);
+    fetchProjectRequests(projectId).then((request) => {
+      setRequests(request);
       setIsPending(false);
     });
   }, [projectId]);

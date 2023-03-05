@@ -13,7 +13,7 @@ export default function Project() {
   const [project, isPendingProject] = useProject(projectId as string);
   const [requests, isPendingRequests] = useRequests(projectId as string);
 
-  console.log(requests);
+console.log(requests)
 
   // TODO pending page
   if (isPendingProject)
@@ -104,9 +104,9 @@ export default function Project() {
       </Stack>
       <Divider />
       {/* // TODO if status OPEN and is author then make additional request to fetch all the requests */}
-      {project?.is_author && project.status === "OPEN" && !isPendingRequests && (
+      {project?.author && project?.status === "OPEN" && !isPendingRequests && (
         <Stack gap={2}>
-          {requests!.map((request, index) => (
+          {requests?.map((request, index) => (
             <Request
               data={request}
               key={index}
