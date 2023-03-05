@@ -51,7 +51,7 @@ const CreateProject = () => {
   useEffect(() => {
     fetchAvailableTags().then((tags) => setTags(tags));
   }, []);
-  // console.log(tags);
+  // console.log(tags);`
   // const options = [
   //   { value: "1", label: "Tag 1" },
   //   { value: "2", label: "Tag 2" },

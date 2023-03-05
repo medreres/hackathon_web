@@ -35,6 +35,8 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [profile, setProfile] = useLocalStorage<Profile | null>("INTH20_PROFILE_DECODED", null);
   if (idToken) setAuthToken(idToken);
 
+  console.log(profile)
+
   useEffect(() => {
     // console.log(jwtDecode(idToken))
     // if token is null - exit

@@ -4,23 +4,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Route, useLocation, BrowserRouter as Router, Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-
 // import GoogleAuth from "./GoogleAuth";
 import Image from "mui-image";
 import GoogleAuth from "../features/auth/components/GoogleAuth";
 
 // import GoogleAuth from "./GoogleAuth";
 
-const pages = [
-  { name: "Profile", path: "/profile" },
-  { name: "Create Project", path: "/create-project" },
-  { name: "Discover Projects", path: "/discover-projects" },
-  { name: "Rate Projects", path: "/rate-projects" },
-];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const pages = [
+    { name: "Profile", path: "/profile" },
+    { name: "Create Project", path: "/create-project" },
+    { name: "Discover Projects", path: "/discover-projects" },
+    { name: "Rate Projects", path: "/rate-projects" },
+  ];
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -42,7 +40,9 @@ function ResponsiveAppBar() {
     <Grid
       container
       sx={{ display: "flex", flexGrow: 1 }}>
-      <AppBar position="static" elevation={0}>
+      <AppBar
+        position="static"
+        elevation={0}>
         <Toolbar disableGutters>
           <Grid
             item
@@ -64,7 +64,11 @@ function ResponsiveAppBar() {
                 fontSize: { md: "24px", xl: "32px" },
                 textDecoration: "none",
               }}>
-                <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ width: "110px", height: "24px", marginRight: "10px" }}
+              />
             </Typography>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -127,7 +131,11 @@ function ResponsiveAppBar() {
                 textDecoration: "none",
                 justifyContent: "center",
               }}>
-                <img src={logo} alt="Logo" style={{ width: "110px", height: "24px", marginRight: "10px" }} />
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ width: "110px", height: "24px", marginRight: "10px" }}
+              />
             </Typography>
             <Box
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
