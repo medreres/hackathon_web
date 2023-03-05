@@ -12,10 +12,12 @@ import useRequests from "../features/project/hooks/useRequests";
 export default function Project() {
   const { projectId } = useParams();
   const [project, isPendingProject] = useProject(projectId as string);
-  const [requests, isPendingRequests, removeRequest] = useRequests(projectId as string);
+  // const [requests, isPendingRequests, removeRequest] = useRequests(projectId as string);
   const startProjectHandler = () => {
     startProject(projectId as string).then(() => {});
   };
+
+  // console.log(project)
 
   const getVariant = (status: string) => {
     switch (status) {
@@ -30,7 +32,7 @@ export default function Project() {
     }
   };
 
-  console.log(project?.pic);
+  // console.log(project?.pic);
 
   // TODO pending page
   if (isPendingProject)
@@ -125,7 +127,7 @@ export default function Project() {
       </Stack>
       <Divider />
       {/* // TODO if status OPEN and is author then make additional request to fetch all the requests */}
-      {project?.author && project?.status === "OPEN" && !isPendingRequests && (
+      {/* {project?.author && project?.status === "OPEN" && !isPendingRequests && (
         <Stack gap={2}>
           {requests?.map((request, index) => (
             <Request
@@ -135,7 +137,7 @@ export default function Project() {
             />
           ))}
         </Stack>
-      )}
+      )} */}
     </Grid>
   );
 }

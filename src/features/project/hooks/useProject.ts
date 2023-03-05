@@ -24,6 +24,7 @@ export default function useProject(projectId: string) {
   useEffect(() => {
     fetchProject(projectId).then((project) => {
       setProject(project);
+      console.log(project)
       setIsPending(false);
     });
   }, [projectId]);

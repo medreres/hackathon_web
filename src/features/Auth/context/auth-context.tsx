@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect } from "react";
 import { setAuthToken } from "../../../api";
 
 import useLocalStorage from "../../../hooks/useLocalStorage";
+import { removeHeaders } from "../../../lib/requests";
 import { getDateUnix } from "../../../utils/format";
 
 interface AuthContextProviderProps {
@@ -32,12 +33,16 @@ export const useAuthContext = () => useContext(AuthContext) as AuthContextValue;
 const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [idToken, setIdToken] = useLocalStorage<string | null>("INTH20_ID_TOKEN", null);
   const [profile, setProfile] = useLocalStorage<Profile | null>("INTH20_PROFILE_DECODED", null);
+  if (idToken) setAuthToken(idToken);
 
   useEffect(() => {
     // console.log(jwtDecode(idToken))
     // if token is null - exit
     // console.log(idToken);
-    if (idToken == null) return;
+
+    if (idToken == null) {
+      return;
+    }
 
     setAuthToken(idToken);
 
@@ -62,6 +67,8 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   //   return () => clearTimeout(cleanup);
   // }, [profile]);
+
+  console.log(idToken);
 
   return (
     <AuthContext.Provider
