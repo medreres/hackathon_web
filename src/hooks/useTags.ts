@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchAvailableTags } from "../api";
 import { ITag } from "../api/fetchAvailableTags";
 

@@ -1,10 +1,10 @@
-import { Autocomplete, Box, Button, Container, Input, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { WithContext as ReactTags } from "react-tag-input";
+import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+// import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+// import { WithContext as ReactTags } from "react-tag-input";
 import { useNavigate } from "react-router-dom";
-import { createProject, fetchAvailableTags } from "../api";
-import { ITag } from "../api/fetchAvailableTags";
+import { createProject } from "../api";
+// import { ITag } from "../api/fetchAvailableTags";
 import { ICreateProject } from "../api/projects/createProject";
 import useTags from "../hooks/useTags";
 

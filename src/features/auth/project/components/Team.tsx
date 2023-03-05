@@ -1,9 +1,9 @@
 import { IconButton, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import React from "react";
-import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
+// import React from "react";
+// import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
 import { ITeamMember } from "../../../project/hooks/useProject";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ITeam {
   members: ITeamMember[];

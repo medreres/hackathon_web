@@ -1,8 +1,8 @@
 import { Autocomplete, CircularProgress, TextField, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { render } from "react-dom";
-import { WithContext as ReactTags } from "react-tag-input";
+import { useEffect, useState } from "react";
+// import { render } from "react-dom";
+// import { WithContext as ReactTags } from "react-tag-input";
 import useProjects from "../hooks/useProjects";
 import useTags from "../hooks/useTags";
 
