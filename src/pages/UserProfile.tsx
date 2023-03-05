@@ -5,6 +5,7 @@ import { Telegram, LinkedIn, GitHub } from '@mui/icons-material';
 import { Add as AddIcon } from '@mui/icons-material';
 import ProjectCard from '../components/ProjectCard';
 import SelectForm from '../components/SelectForm';
+import FilterByStatus from '../components/FilterByStatus';
 
 const Profile = () => {
   const skills = ["React", "TypeScript", "Node.js", "Express.js"];
@@ -166,19 +167,21 @@ const Profile = () => {
         </Box>
       </Grid>
       <Grid item xs={12} md={8}>
-          <Typography sx={{ pl: {xs: "0", md:"24px"}, fontWeight: "700", fontSize: "32px", color: "#0A0908", mb: "24px", textAlign: "left" }}>Projects</Typography>
-            <Box padding="0">
-            {projects.map(project => (
-              <ProjectCard  
-                key={project.id}
-                name={project.name}
-                description={project.description}
-                status={project.status}
-                image={project.image}
-              />
-
-            ))}
-            </Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb="24px" sx={{flexDirection: {xs: "column", sm: "row"}}}>
+          <Typography sx={{ pl: {xs: "0", md:"24px"}, fontWeight: "700", fontSize: "32px", color: "#0A0908", textAlign: "left", display: "inline-block", mb: {xs: 2, sm: 0} }}>Projects</Typography>
+          <FilterByStatus />
+        </Box>
+        <Box padding="0">
+          {projects.map(project => (
+          <ProjectCard  
+          key={project.id}
+          name={project.name}
+          description={project.description}
+          status={project.status}
+          image={project.image}
+          />
+          ))}
+        </Box>
       </Grid>
     </Grid>
   )
