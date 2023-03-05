@@ -1,6 +1,6 @@
 import { Box, Button, Chip, CircularProgress, Divider, Grid, Typography } from "@mui/material";
-import { Container, Stack } from "@mui/system";
-import React, { useState } from "react";
+import { Stack } from "@mui/system";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { createRequest, startProject } from "../api";
 import BackButton from "../components/BackButton";
@@ -50,7 +50,7 @@ export default function Project() {
   // console.log(project?.pic);
 
   // TODO pending page
-  if (isPendingProject)
+  if (isPendingProject || isPendingRequests)
     return (
       <CircularProgress
         // variant="determinate"

@@ -7,8 +7,8 @@ export default async (status: string, tags: string[]): Promise<IProject[]> => {
   const tagsFormatted = tags.join(",");
   const params = {
     status,
-    tag: tagsFormatted,
+    tags: tagsFormatted,
   };
-  const url = buildUrl("/projects", BASE_URL, params);
+  const url = buildUrl("/projects/open", BASE_URL, params);
   return get(url.toString()).then(({ data }) => data as IProject[]);
 };

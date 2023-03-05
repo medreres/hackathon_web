@@ -1,13 +1,15 @@
-import { Autocomplete, Box, Button, Container, Input, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { WithContext as ReactTags } from "react-tag-input";
+import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+// import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+// import { WithContext as ReactTags } from "react-tag-input";
 import { useNavigate } from "react-router-dom";
-import { createProject, fetchAvailableTags } from "../api";
-import { ITag } from "../api/fetchAvailableTags";
+import { createProject } from "../api";
+// import { ITag } from "../api/fetchAvailableTags";
 import { ICreateProject } from "../api/projects/createProject";
+import useTags from "../hooks/useTags";
 
 const CreateProject = () => {
+  // TODO loading spinner when creating project
   const [file, setFile] = useState(null);
   const [hashtags, setHashtags] = useState("");
   const [name, setName] = useState("");
@@ -47,10 +49,7 @@ const CreateProject = () => {
   };
 
   // TODO available tags
-  const [tags, setTags] = useState<ITag[]>([]);
-  useEffect(() => {
-    fetchAvailableTags().then((tags) => setTags(tags));
-  }, []);
+  const [tags, isPending] = useTags();
   // console.log(tags);
   // const options = [
   //   { value: "1", label: "Tag 1" },
@@ -179,7 +178,8 @@ const CreateProject = () => {
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={tags.map((tag) => tag.title)}
+        freeSolo
+        options={isPending ? [] : tags.map((tag) => tag.title)}
         getOptionLabel={(option) => option}
         onChange={handleTagSelection}
         sx={{ width: "50%" }}
