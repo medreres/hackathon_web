@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { createProject, fetchAvailableTags } from "../api";
 import { ITag } from "../api/fetchAvailableTags";
 import { ICreateProject } from "../api/projects/createProject";
+import useTags from "../hooks/useTags";
 
 const CreateProject = () => {
   const [file, setFile] = useState(null);
@@ -47,10 +48,7 @@ const CreateProject = () => {
   };
 
   // TODO available tags
-  const [tags, setTags] = useState<ITag[]>([]);
-  useEffect(() => {
-    fetchAvailableTags().then((tags) => setTags(tags));
-  }, []);
+  const [tags, isPending] = useTags();
   // console.log(tags);
   // const options = [
   //   { value: "1", label: "Tag 1" },
@@ -179,7 +177,7 @@ const CreateProject = () => {
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={tags.map((tag) => tag.title)}
+        options={isPending ? [] : tags.map((tag) => tag.title)}
         getOptionLabel={(option) => option}
         onChange={handleTagSelection}
         sx={{ width: "50%" }}
