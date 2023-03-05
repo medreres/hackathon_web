@@ -27,6 +27,7 @@ const GoogleAuth = () => {
 
   return (
     <div>
+      
       <GoogleAuthButton 
         variant="outlined"
         color="secondary"

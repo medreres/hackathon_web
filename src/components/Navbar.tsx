@@ -5,8 +5,11 @@ import { Route, useLocation, BrowserRouter as Router, Link as RouterLink } from 
 import logo from "../assets/logo.png";
 
 
-import GoogleAuth from "./GoogleAuth";
+// import GoogleAuth from "./GoogleAuth";
 import Image from "mui-image";
+import GoogleAuth from "../features/auth/components/GoogleAuth";
+
+// import GoogleAuth from "./GoogleAuth";
 
 const pages = [
   { name: "Profile", path: "/profile" },
@@ -164,6 +167,7 @@ function ResponsiveAppBar() {
                 </Button>
               ))}
             </Box>
+            {/* // TODO temprorary switched with auth button from test week */}
             <GoogleAuth />
           </Grid>
         </Toolbar>
