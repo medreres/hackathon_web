@@ -9,6 +9,7 @@ import CreateProject from './pages/CreateProject'
 import DiscoverProjects from './pages/DiscoverProjects'
 import RateProjects from './pages/RateProjects'
 import UserProfile from './pages/UserProfile'
+import Project from './pages/Project'
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/projects/:projectId"
+          element={<Project />}
         />
         <Route
           path="/profile"
@@ -38,12 +43,11 @@ function App() {
         <Route
           path="/user-profile"
           element={<UserProfile />}
-        />    
+        />
       </Routes>
       <Footer />
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
