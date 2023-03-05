@@ -2,8 +2,9 @@ import * as React from "react";
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Button, MenuItem, Link, Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Route, useLocation, BrowserRouter as Router, Link as RouterLink } from "react-router-dom";
+import GoogleAuth from "../features/auth/components/GoogleAuth";
 
-import GoogleAuth from "./GoogleAuth";
+// import GoogleAuth from "./GoogleAuth";
 
 const pages = [
   { name: "Profile", path: "/profile" },
@@ -161,6 +162,7 @@ function ResponsiveAppBar() {
                 </Button>
               ))}
             </Box>
+            {/* // TODO temprorary switched with auth button from test week */}
             <GoogleAuth />
           </Grid>
         </Toolbar>

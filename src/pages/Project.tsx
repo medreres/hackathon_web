@@ -14,12 +14,23 @@ export default function Project() {
   const [project, isPendingProject] = useProject(projectId as string);
   const [requests, isPendingRequests, removeRequest] = useRequests(projectId as string);
   const startProjectHandler = () => {
-    startProject(projectId as string).then(() => {
+    startProject(projectId as string).then(() => {});
+  };
 
-    })
-  }
+  const getVariant = (status: string) => {
+    switch (status) {
+      case "OPEN":
+        return "success";
+      case "IN_PROGRESS":
+        return "warning";
+      case "FINISHED":
+        return "secondary";
+      default:
+        throw new Error();
+    }
+  };
 
-  console.log(project?.pic)
+  console.log(project?.pic);
 
   // TODO pending page
   if (isPendingProject)
@@ -76,13 +87,14 @@ export default function Project() {
         </Stack>
         <Button
           variant="contained"
+          color={getVariant(project!.status)}
           sx={{
-            color: "#8B949E",
-            backgroundColor: "#D9D9D9",
+            color: "#fff",
+            // backgroundColor: "#D9D9D9",
             borderRadius: 5,
             textTransform: "lowercase",
           }}>
-          open
+          {project?.status}
         </Button>
       </Box>
       <Stack
@@ -98,7 +110,7 @@ export default function Project() {
         <Team members={project!.team} />
         {project?.author && project?.status === "OPEN" && (
           <Button
-          onClick={startProjectHandler}
+            onClick={startProjectHandler}
             variant="contained"
             sx={{
               color: "#8B949E",

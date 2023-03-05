@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect } from "react";
+import { setAuthToken } from "../../../api";
 
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import { getDateUnix } from "../../../utils/format";
@@ -38,6 +39,8 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     // console.log(idToken);
     if (idToken == null) return;
 
+    setAuthToken(idToken);
+
     // if token is present, but not valid - set to null
     if (getDateUnix(profile!.exp) < new Date()) {
       setIdToken(null);
@@ -46,18 +49,19 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   }, [idToken, profile, setIdToken, setProfile]);
 
-  useEffect(() => {
-    if (!profile) return;
+  // TODO
+  // useEffect(() => {
+  //   if (!profile) return;
 
-    const time = getDateUnix(profile!.exp).getMilliseconds() - new Date().getMilliseconds();
-    const clearProfile = () => {
-      setIdToken(null);
-      setProfile(null);
-    };
-    const cleanup = setTimeout(clearProfile, time);
+  //   const time = getDateUnix(profile!.exp).getMilliseconds() - new Date().getMilliseconds();
+  //   const clearProfile = () => {
+  //     setIdToken(null);
+  //     setProfile(null);
+  //   };
+  //   const cleanup = setTimeout(clearProfile, time);
 
-    return () => clearTimeout(cleanup);
-  }, [profile]);
+  //   return () => clearTimeout(cleanup);
+  // }, [profile]);
 
   return (
     <AuthContext.Provider
