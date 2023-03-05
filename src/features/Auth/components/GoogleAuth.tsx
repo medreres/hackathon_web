@@ -72,8 +72,23 @@ const GoogleAuth = () => {
           src={profile?.picture}
         />{" "}
         <Button
-          variant="contained"
-          onClick={handleLogout}>
+          variant="outlined"
+          onClick={handleLogout}
+          sx={{
+            fontSize: "16px",
+            padding: "8px 24px",
+            color: '#0A0908',
+            borderRadius: "36px",
+            textTransform: "none",
+            textAlign: "center",
+            backgroundColor: "#fff",
+            border: "1px solid #0A0908",
+            ':hover': {
+              bgcolor: '#fff', 
+              border: "1px solid #0A0908",
+            },
+          }}
+        >
           Log out
         </Button>
       </>

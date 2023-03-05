@@ -64,8 +64,8 @@ export default function Project() {
   return (
     <Grid
       container
+      py={{ xs: "24px", sm: "36px", xl: "72px" }}
       px={{ xs: "36px", sm: "48px", md: "96px" }}
-      py={{ xs: "48px" }}
       display="flex"
       flexDirection={"column"}
       flex="1"
@@ -78,7 +78,9 @@ export default function Project() {
       <Box
         display={"flex"}
         justifyContent={"flex-start"}
-        marginLeft={"-12px"}>
+        marginLeft={"-12px"}
+        mb="24px"
+        >
         <BackButton />
       </Box>
       <Box>
@@ -131,18 +133,41 @@ export default function Project() {
         </Typography>
         <Team members={project!.team} />
         {project?.author && project?.status === "OPEN" && (
+          // <Button
+          //   onClick={startProjectHandler}
+          //   variant="contained"
+          //   sx={{
+          //     color: "#8B949E",
+          //     backgroundColor: "#D9D9D9",
+          //     borderRadius: 5,
+          //     textTransform: "none",
+          //     px: 5,
+          //   }}>
+          //   Start Project
+          // </Button>
           <Button
-            onClick={startProjectHandler}
-            variant="contained"
-            sx={{
-              color: "#8B949E",
-              backgroundColor: "#D9D9D9",
-              borderRadius: 5,
-              textTransform: "none",
-              px: 5,
-            }}>
-            Start Project
-          </Button>
+          variant="outlined"
+          onClick={startProjectHandler}
+          sx={{
+            fontSize: "16px",
+            lineHeight: "1.5",
+            fontWeight: 600,
+            padding: "14px 20px",
+            color: "#0A0908",
+            borderRadius: "36px",
+            textTransform: "capitalize",
+            textAlign: "center",
+            backgroundColor: "#fff",
+            border: "1px solid #0A0908",
+            width: "250px",
+            ":hover": {
+              bgcolor: "#2144F5",
+              color: "white",
+              border: "1px solid #2144F5",
+            },
+          }}>
+          Start Project
+        </Button>
         )}
         {idToken && project!.author === false && project!.status === "OPEN" && (
           <>

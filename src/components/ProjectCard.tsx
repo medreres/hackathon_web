@@ -32,6 +32,7 @@ const ProjectCard = ({ image, name, description, status, id }: ProjectCardProps)
       sx={{
         display: "flex",
         width: "100%",
+        // height: "250px",
         flexGrow: 1,
         px: { xs: "0", md: "24px" },
         py: "24px",
@@ -46,15 +47,16 @@ const ProjectCard = ({ image, name, description, status, id }: ProjectCardProps)
           flexDirection: "column",
           alignItems: "start",
           width: { xs: "100%", sm: "190px" },
+   
         }}>
         <img
           src={image}
           alt={name}
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </Box>
       <Box sx={{ display: "flex", flexGrow: 1, flexDirection: "column", alignItems: "start" }}>
-        <CardContent sx={{ flexGrow: 1, width: "100%", textAlign: "left", ml: { xs: "0", sm: "36px" } }}>
+        <CardContent sx={{ flexGrow: 1, width: "100%", textAlign: "left", pl: { xs: "0", sm: "36px" }  }}>
           <Typography
             component="h2"
             sx={{ fontWeight: "700", fontSize: "24px", mb: 0.5, color: "#2144F5" }}>
@@ -79,7 +81,7 @@ const ProjectCard = ({ image, name, description, status, id }: ProjectCardProps)
                   marginRight: 8,
                 }}
               />
-              <Typography sx={{ fontWeight: "500", fontSize: "14px", ml: { xs: "6px", md: "14px" } }}>
+              <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
                 {getStatus(status)}
               </Typography>
             </Box>

@@ -1,15 +1,14 @@
-import { Autocomplete, Box, Button, TextField, Typography } from "@mui/material";
-import { useState } from "react";
-// import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-// import { WithContext as ReactTags } from "react-tag-input";
+import { Autocomplete, Box, Button, Container, Input, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { WithContext as ReactTags } from "react-tag-input";
 import { useNavigate } from "react-router-dom";
-import { createProject } from "../api";
-// import { ITag } from "../api/fetchAvailableTags";
+import { createProject, fetchAvailableTags } from "../api";
+import { ITag } from "../api/fetchAvailableTags";
 import { ICreateProject } from "../api/projects/createProject";
-import useTags from "../hooks/useTags";
+import BackButton from "../components/BackButton";
 
 const CreateProject = () => {
-  // TODO loading spinner when creating project
   const [file, setFile] = useState(null);
   const [hashtags, setHashtags] = useState("");
   const [name, setName] = useState("");
@@ -49,7 +48,10 @@ const CreateProject = () => {
   };
 
   // TODO available tags
-  const [tags, isPending] = useTags();
+  const [tags, setTags] = useState<ITag[]>([]);
+  useEffect(() => {
+    fetchAvailableTags().then((tags) => setTags(tags));
+  }, []);
   // console.log(tags);
   // const options = [
   //   { value: "1", label: "Tag 1" },
@@ -74,10 +76,18 @@ const CreateProject = () => {
   };
 
   return (
-    <Box px={{ xs: "36px", sm: "48px", md: "96px" }}>
+    <Box py={{ xs: "24px", sm: "36px", xl: "72px" }}
+      px={{ xs: "36px", sm: "48px", md: "96px" }}>
+      <Box
+        display={"flex"}
+        justifyContent={"flex-start"}
+        marginLeft={"-12px"}
+        mb="24px"
+        >
+        <BackButton />
+      </Box>
       <Typography
         sx={{
-          pl: { xs: "0", md: "24px" },
           fontWeight: "700",
           fontSize: "32px",
           color: "#0A0908",
@@ -178,10 +188,10 @@ const CreateProject = () => {
       <Autocomplete
         multiple
         id="tags-outlined"
-        freeSolo
-        options={isPending ? [] : tags.map((tag) => tag.title)}
+        options={tags.map((tag) => tag.title)}
         getOptionLabel={(option) => option}
         onChange={handleTagSelection}
+        color="secondary"
         sx={{ width: "50%" }}
         renderInput={(params) => (
           <TextField
@@ -189,7 +199,11 @@ const CreateProject = () => {
             variant="outlined"
             // label="#add needed skills"
             placeholder="#add needed skills"
-            sx={{ mb: "24px", borderRadius: "2px" }}
+            sx={{ mb: "24px", borderRadius: "2px", '& .MuiOutlinedInput-root': {
+              '&.Mui-focused fieldset': {
+                borderColor: '#9498AD',
+              },
+            },  }}
           />
         )}
       />
@@ -199,7 +213,12 @@ const CreateProject = () => {
         fullWidth
         value={name}
         onChange={handleNameChange}
-        sx={{ mb: "24px", color: "#2144F5" }}
+        sx={{ mb: "24px", color: "#2144F5", '& .MuiOutlinedInput-root': {
+          '&.Mui-focused fieldset': {
+            borderColor: '#9498AD',
+          },
+        },
+      }}
       />
       <TextField
         placeholder="Add project description"
@@ -209,7 +228,11 @@ const CreateProject = () => {
         rows={4}
         value={description}
         onChange={handleDescriptionChange}
-        sx={{ mb: "24px" }}
+        sx={{ mb: "24px", '& .MuiOutlinedInput-root': {
+          '&.Mui-focused fieldset': {
+            borderColor: '#9498AD',
+          },
+        }, }}
       />
       <Button
         variant="outlined"
@@ -226,6 +249,7 @@ const CreateProject = () => {
           backgroundColor: "#fff",
           border: "1px solid #0A0908",
           width: "250px",
+          my: "24px",
           ":hover": {
             bgcolor: "#2144F5",
             color: "white",

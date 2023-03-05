@@ -30,6 +30,7 @@ import SelectForm from "../components/SelectForm";
 import { useAuthContext } from "../features/auth/context/auth-context";
 import { useNavigate } from "react-router-dom";
 import useMyProjects from "../hooks/useMyProjects";
+import BackButton from "../components/BackButton";
 
 const Profile = () => {
   // const { profileId } = useParams();
@@ -139,8 +140,14 @@ const Profile = () => {
   return (
     <Grid
       container
-      py="72px"
+      py={{ xs: "24px", sm: "36px", xl: "72px" }}
       px={{ xs: "36px", sm: "48px", md: "96px" }}>
+      <Grid item xs={12}
+        display={"flex"}
+        justifyContent={"flex-start"}
+        marginLeft={"-12px"}>
+      <BackButton />
+      </Grid>
       <Grid
         item
         xs={12}
@@ -152,7 +159,9 @@ const Profile = () => {
           flexDirection="column"
           alignItems="center"
           textAlign="center"
-          mb="48px">
+          mb="48px"
+          maxWidth="100%"
+          >
           <Avatar
             alt="User Name"
             src={profile?.pic || "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg"}
@@ -161,8 +170,9 @@ const Profile = () => {
           <Typography
             sx={{
               fontWeight: "700",
-              fontSize: "32px",
+              fontSize: {sx: "16px", sm: "20px", xl: "28px"},
               color: "#2144F5",
+              wordBreak: "break-all",
             }}>
             {profile?.username}
           </Typography>
@@ -312,7 +322,7 @@ const Profile = () => {
               flexGrow="1"
               px={{ xs: "0", md: "24px" }}
               py="24px">
-              <IconButton sx={{ border: "1px solid", borderRadius: "50%", mr: "36px" }}>
+              <IconButton sx={{ border: "1px solid", borderRadius: "50%", mr: "36px" }} href="/create-project">
                 <AddIcon sx={{ height: "20px", width: "20px", color: "#0A0908", margin: "30px" }} />
               </IconButton>
               <Box textAlign="left">

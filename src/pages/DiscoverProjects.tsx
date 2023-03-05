@@ -1,6 +1,7 @@
-import { Autocomplete, CircularProgress, TextField, Typography } from "@mui/material";
+import { Autocomplete, Box, CircularProgress, TextField, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useEffect, useState } from "react";
+import BackButton from "../components/BackButton";
 // import { render } from "react-dom";
 // import { WithContext as ReactTags } from "react-tag-input";
 import useProjects from "../hooks/useProjects";
@@ -20,7 +21,15 @@ const DiscoverProjects = () => {
   };
 
   return (
-    <>
+    <Box py={{ xs: "24px", sm: "36px", xl: "72px" }} px={{ xs: "36px", sm: "48px", md: "96px" }}>
+      <Box
+        display={"flex"}
+        justifyContent={"flex-start"}
+        marginLeft={"-12px"}
+        mb="24px"
+        >
+        <BackButton />
+      </Box>
       <Autocomplete
         multiple
         id="tags-outlined"
@@ -50,7 +59,7 @@ const DiscoverProjects = () => {
           </>
         )}
       </Stack>
-    </>
+    </Box>
   );
 };
 
