@@ -6,6 +6,7 @@ import { Add as AddIcon } from '@mui/icons-material';
 import ProjectCard from '../components/ProjectCard';
 import SelectForm from '../components/SelectForm';
 import FilterByStatus from '../components/FilterByStatus';
+import RequestCard from '../components/RequestCard';
 
 const Profile = () => {
   const skills = ["React", "TypeScript", "Node.js", "Express.js"];
@@ -216,14 +217,25 @@ const Profile = () => {
                 status={project.status}
                 image={project.image}
               />
-
             ))}
             </Box>
           </Box>
         )}
         {tabValue === 1 && (
           <Box>
-            <Typography variant="h5">Your Requests Tab Content</Typography>
+            <Box sx={{ px: {xs: "0", md: "24px"}, py: "24px", display: "flex", justifyContent: "flex-end" }}>
+              <FilterByStatus />
+            </Box>
+                    {projects.map(project => (
+            <Box padding="0">
+              <RequestCard  
+                key={project.id}
+                name={project.name}
+                description={project.description}
+                status={project.status}
+              />
+            </Box>
+          ))}
           </Box>
         )}
       </Grid>
