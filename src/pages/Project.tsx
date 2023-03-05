@@ -12,6 +12,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import CheckIcon from "@mui/icons-material/Check";
 import SendIcon from "@mui/icons-material/Send";
 import { useAuthContext } from "../features/auth/context/auth-context";
+import { getStatus } from "../utils/format";
 
 export default function Project() {
   const { projectId } = useParams();
@@ -47,16 +48,7 @@ export default function Project() {
     }
   };
 
-  const getStatus = (status: string) => {
-    switch (status) {
-      case "OPEN":
-        return "open";
-      case "IN_PROGRESS":
-        return "in progress";
-      case "FINISHED":
-        return "finished";
-    }
-  };
+ 
 
   // console.log(project?.pic);
 

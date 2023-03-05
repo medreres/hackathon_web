@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import users from "../assets/users.png";
 import { Link } from "react-router-dom";
+import { getStatus } from "../utils/format";
 
 interface ProjectCardProps {
   image: string;
@@ -79,7 +80,7 @@ const ProjectCard = ({ image, name, description, status, id }: ProjectCardProps)
                 }}
               />
               <Typography sx={{ fontWeight: "500", fontSize: "14px", ml: { xs: "6px", md: "14px" } }}>
-                {status}
+                {getStatus(status)}
               </Typography>
             </Box>
           </Box>
