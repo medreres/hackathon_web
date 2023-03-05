@@ -41,6 +41,7 @@ const RequestCard = ({ name, status, description, id }: RequestCardProps) => {
         py: "24px",
         flexDirection: "row",
         flexWrap: "nowrap",
+        textDecoration: "none",
       }}
       elevation={0}>
       <CardMedia>

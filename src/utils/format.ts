@@ -8,3 +8,14 @@ export const getDateUnix = (value: number): Date => {
   // multiplied by 1000 so that the argument is in milliseconds, not seconds.
   return new Date(value * 1000);
 };
+
+export const getStatus = (status: string) => {
+  switch (status) {
+    case "OPEN":
+      return "open";
+    case "IN_PROGRESS":
+      return "in progress";
+    case "FINISHED":
+      return "finished";
+  }
+};
