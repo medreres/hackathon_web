@@ -1,5 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 // import React from 'react'
+// import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React from "react";
 
 const SelectForm = () => {
   return (
@@ -8,6 +10,7 @@ const SelectForm = () => {
       sx={{ color: "#000", minWidth: 190, border: "1px solid #000000", borderRadius: "36px" }}>
       <InputLabel id="status">Filter by Status</InputLabel>
       <Select
+        defaultValue={"all"}
         labelId="status-filter-label"
         sx={{ color: "#000", minWidth: 190, border: "none", padding: 1 }}>
         <MenuItem value="all">All</MenuItem>

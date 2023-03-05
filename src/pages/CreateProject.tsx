@@ -9,6 +9,7 @@ import { ICreateProject } from "../api/projects/createProject";
 import useTags from "../hooks/useTags";
 
 const CreateProject = () => {
+  // TODO loading spinner when creating project
   const [file, setFile] = useState(null);
   const [hashtags, setHashtags] = useState("");
   const [name, setName] = useState("");
@@ -177,6 +178,7 @@ const CreateProject = () => {
       <Autocomplete
         multiple
         id="tags-outlined"
+        freeSolo
         options={isPending ? [] : tags.map((tag) => tag.title)}
         getOptionLabel={(option) => option}
         onChange={handleTagSelection}

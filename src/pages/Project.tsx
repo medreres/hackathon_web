@@ -50,7 +50,7 @@ export default function Project() {
   // console.log(project?.pic);
 
   // TODO pending page
-  if (isPendingProject)
+  if (isPendingProject || isPendingRequests)
     return (
       <CircularProgress
         // variant="determinate"

@@ -7,19 +7,24 @@ import logo from "../assets/logo.png";
 // import GoogleAuth from "./GoogleAuth";
 import Image from "mui-image";
 import GoogleAuth from "../features/auth/components/GoogleAuth";
+import { useAuthContext } from "../features/auth/context/auth-context";
 
 // import GoogleAuth from "./GoogleAuth";
-
-const pages = [
-  { name: "Profile", path: "/profile" },
-  { name: "Create Project", path: "/create-project" },
-  { name: "Discover Projects", path: "/discover-projects" },
-  { name: "Rate Projects", path: "/rate-projects" },
-];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const { idToken } = useAuthContext();
+
+  const pages = [];
+
+  pages[2] = { name: "Discover Projects", path: "/discover-projects" };
+
+  if (idToken) {
+    pages[0] = { name: "Profile", path: "/profile" };
+    pages[1] = { name: "Create Project", path: "/create-project" };
+    pages[3] = { name: "Rate Projects", path: "/rate-projects" };
+  }
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);

@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Button,
+  CircularProgress,
   // ButtonGroup,
   // FormControl,
   Grid,
@@ -16,15 +17,34 @@ import {
   Typography,
 } from "@mui/material";
 // import Image from "mui-image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Telegram, LinkedIn, GitHub } from "@mui/icons-material";
 import { Add as AddIcon } from "@mui/icons-material";
 import ProjectCard from "../components/ProjectCard";
 // import SelectForm from "../components/SelectForm";
 import FilterByStatus from "../components/FilterByStatus";
 import RequestCard from "../components/RequestCard";
+import useProfile from "../hooks/useProfile";
+import useRequests from "../hooks/useRequests";
+import SelectForm from "../components/SelectForm";
+import { useAuthContext } from "../features/auth/context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  // const { profileId } = useParams();
+  const { idToken } = useAuthContext();
+  const [profile, isPending] = useProfile();
+  const [requests, isRequestsPending, makeRequest] = useRequests();
+  const navigate = useNavigate();
+
+  console.log(requests)
+
+  // console.log(requests)
+
+  // console.log(profile);
+
+  // console.log(profile)
+
   const skills = ["React", "TypeScript", "Node.js", "Express.js"];
 
   const links = [
@@ -85,11 +105,33 @@ const Profile = () => {
 
   const [tabValue, setTabValue] = useState(0);
 
+  // console.log(tabValue);
+
   const handleChange = (event: any, newValue: any) => {
     setTabValue(newValue);
   };
 
-  const [activeTab, setActiveTab] = useState("projects");
+  // const [activeTab, setActiveTab] = useState("projects");
+
+  useEffect(() => {
+    if (tabValue == 0 || requests == null) return;
+
+    makeRequest();
+  }, [tabValue]);
+
+  useEffect(() => {
+    if (!idToken) {
+      navigate("/");
+    }
+  }, [idToken]);
+
+  if (isPending)
+    return (
+      <CircularProgress
+        // variant="determinate"
+        color="secondary"
+      />
+    );
 
   return (
     <Grid
@@ -100,6 +142,7 @@ const Profile = () => {
         item
         xs={12}
         md={4}
+        container
         direction="column">
         <Box
           display="flex"
@@ -109,7 +152,7 @@ const Profile = () => {
           mb="48px">
           <Avatar
             alt="User Name"
-            src="https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg"
+            src={profile?.pic || "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg"}
             sx={{ width: 150, height: 150, borderRadius: "50%", mb: "20px" }}
           />
           <Typography
@@ -118,83 +161,85 @@ const Profile = () => {
               fontSize: "32px",
               color: "#2144F5",
             }}>
-            Name Surname
+            {profile?.username}
           </Typography>
           <Typography
             sx={{
               fontWeight: "500",
               fontSize: "16px",
             }}>
-            Frontend Engineer
+            {profile?.job_title || "No Job Title"}
           </Typography>
         </Box>
-        <Box
-          textAlign="left"
-          mb="48px">
-          <Typography
-            sx={{
-              color: "#2144F5",
-              fontWeight: "500",
-              fontSize: "16px",
-              textTransform: "uppercase",
-              mb: "1.5rem",
-            }}>
-            Skills
-          </Typography>
+        {profile!.skills.length > 0 && (
           <Box
-            display="flex"
-            justifyContent="start"
-            gap="1rem"
-            flexWrap="wrap">
-            {skills.map((skill) => (
-              <Button
-                key={skill}
-                variant="outlined"
-                sx={{
-                  padding: "8px 16px",
-                  border: "1px solid",
-                  borderRadius: "25px",
-                  fontWeight: "500",
-                  fontSize: "16px",
-                  textTransform: "lowercase",
-                  color: "#0A0908",
-                  ":hover": {
-                    borderColor: "#000",
-                    backgroundColor: "#9498AD",
-                  },
-                }}>
-                #{skill}
-              </Button>
-            ))}
+            textAlign="left"
+            mb="48px">
+            <Typography
+              sx={{
+                color: "#2144F5",
+                fontWeight: "500",
+                fontSize: "16px",
+                textTransform: "uppercase",
+                mb: "1.5rem",
+              }}>
+              Skills
+            </Typography>
+            <Box
+              display="flex"
+              justifyContent="start"
+              gap="1rem"
+              flexWrap="wrap">
+              {profile?.skills.map((skill) => (
+                <Button
+                  key={skill}
+                  variant="outlined"
+                  sx={{
+                    padding: "8px 16px",
+                    border: "1px solid",
+                    borderRadius: "25px",
+                    fontWeight: "500",
+                    fontSize: "16px",
+                    textTransform: "lowercase",
+                    color: "#0A0908",
+                    ":hover": {
+                      borderColor: "#000",
+                      backgroundColor: "#9498AD",
+                    },
+                  }}>
+                  #{skill}
+                </Button>
+              ))}
+            </Box>
           </Box>
-        </Box>
+        )}
+        {profile?.description && (
+          <Box
+            textAlign="left"
+            mb="48px">
+            <Typography
+              sx={{
+                color: "#2144F5",
+                fontWeight: "500",
+                fontSize: "16px",
+                textTransform: "uppercase",
+                mb: "1.5rem",
+              }}>
+              About
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: "500",
+                fontSize: "16px",
+              }}>
+              {profile?.description}
+            </Typography>
+          </Box>
+        )}
         <Box
           textAlign="left"
           mb="48px">
-          <Typography
-            sx={{
-              color: "#2144F5",
-              fontWeight: "500",
-              fontSize: "16px",
-              textTransform: "uppercase",
-              mb: "1.5rem",
-            }}>
-            About
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: "500",
-              fontSize: "16px",
-            }}>
-            Lorem ipsum dolor sit amet consectetur. Dictumst viverra tempus dui scelerisque posuere sagittis non.
-            Pharetra velit viverra ullamcorper sed enim pellentesque lectus leo posuere. Sagittis etiam non a
-            sollicitudin posuere integer aenean commodo. Posuere posuere convallis at lacinia.
-          </Typography>
-        </Box>
-        <Box
-          textAlign="left"
-          mb="48px">
-          <Typography
+          {/* <Typography
             sx={{
               color: "#2144F5",
               fontWeight: "500",
@@ -203,21 +248,32 @@ const Profile = () => {
               mb: "1.5rem",
             }}>
             Social media
-          </Typography>
+          </Typography> */}
           <Box
             display="flex"
             justifyContent="start"
             gap="1.5rem"
             flexWrap="wrap">
-            {links.map((link, index) => (
+            {/* {links.map((link, index) => ( */}
+            {profile?.github_link && (
               <IconButton
-                key={index}
-                href={link.url}
+                key={profile?.github_link}
+                href={profile?.github_link}
                 target="_blank"
                 sx={{ width: "20px", heigth: "20px", color: "#0A0908" }}>
-                {link.icon}
+                <GitHub />
               </IconButton>
-            ))}
+            )}
+            {profile?.linkedin_link && (
+              <IconButton
+                key={profile?.linkedin_link}
+                href={profile?.linkedin_link}
+                target="_blank"
+                sx={{ width: "20px", heigth: "20px", color: "#0A0908" }}>
+                <LinkedIn />
+              </IconButton>
+            )}
+            {/* ))} */}
           </Box>
         </Box>
       </Grid>
@@ -275,7 +331,7 @@ const Profile = () => {
               </Box>
             </Box>
             <Box sx={{ px: { xs: "0", md: "24px" }, py: "24px", display: "flex", justifyContent: "flex-end" }}>
-              <FilterByStatus />
+              <SelectForm />
             </Box>
             <Box padding="0">
               {projects.map((project) => (
@@ -295,13 +351,14 @@ const Profile = () => {
             <Box sx={{ px: { xs: "0", md: "24px" }, py: "24px", display: "flex", justifyContent: "flex-end" }}>
               <FilterByStatus />
             </Box>
-            {projects.map((project) => (
+            {requests?.map((request) => (
               <Box padding="0">
                 <RequestCard
-                  key={project.id}
-                  name={project.name}
-                  description={project.description}
-                  status={project.status}
+                  key={request.id}
+                  id={request.id}
+                  name={request.title}
+                  description={request.description}
+                  status={request.status}
                 />
               </Box>
             ))}

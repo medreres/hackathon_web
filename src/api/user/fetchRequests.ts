@@ -1,7 +1,7 @@
 import { get } from "../../lib/requests";
 import { buildUrl } from "../../utils/buildUrl";
 import { BASE_URL } from "../../config/default.json";
-interface IRequest {
+export interface IRequest {
   id: string;
   title: string;
   description: string;
