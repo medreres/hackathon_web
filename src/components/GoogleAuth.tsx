@@ -28,7 +28,8 @@ const GoogleAuth = () => {
   return (
     <div>
       <GoogleAuthButton 
-        variant="contained"
+        variant="outlined"
+        color="secondary"
         // onClick={() => login()}
       >
         <GoogleIcon         

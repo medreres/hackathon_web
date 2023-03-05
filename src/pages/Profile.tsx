@@ -5,6 +5,7 @@ import { Telegram, LinkedIn, GitHub } from '@mui/icons-material';
 import { Add as AddIcon } from '@mui/icons-material';
 import ProjectCard from '../components/ProjectCard';
 import SelectForm from '../components/SelectForm';
+import FilterByStatus from '../components/FilterByStatus';
 
 const Profile = () => {
   const skills = ["React", "TypeScript", "Node.js", "Express.js"];
@@ -204,7 +205,7 @@ const Profile = () => {
               </Box>
             </Box>
             <Box sx={{ px: {xs: "0", md: "24px"}, py: "24px", display: "flex", justifyContent: "flex-end" }}>
-              <SelectForm />
+              <FilterByStatus />
             </Box>
             <Box padding="0">
             {projects.map(project => (

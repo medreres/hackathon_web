@@ -1,8 +1,6 @@
 import { Autocomplete, Box, Button, Container, Input, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
-import { WithContext as ReactTags } from 'react-tag-input';
-
 
 const CreateProject = () => {
   const [file, setFile] = useState(null);
@@ -40,16 +38,8 @@ const CreateProject = () => {
 
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const handleTagSelection = (event, values) => {
+  const handleTagSelection = (event: any, values: any) => {
     setSelectedTags(values);
-  };
-
-  const handleSaveChanges = () => {
-    const requestBody = {
-      tags: selectedTags.map(tag => tag.value),
-    };
-    // send the requestBody to the backend
-    console.log(requestBody);
   };
 
   return (
