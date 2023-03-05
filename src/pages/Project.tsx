@@ -47,6 +47,17 @@ export default function Project() {
     }
   };
 
+  const getStatus = (status: string) => {
+    switch (status) {
+      case "OPEN":
+        return "open";
+      case "IN_PROGRESS":
+        return "in progress";
+      case "FINISHED":
+        return "finished";
+    }
+  };
+
   // console.log(project?.pic);
 
   // TODO pending page
@@ -78,12 +89,14 @@ export default function Project() {
         marginLeft={"-12px"}>
         <BackButton />
       </Box>
-      <img
-        // width={1072}
-        height={250}
-        src={project?.pic || "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"}
-        alt="placeholder"
-      />
+      <Box>
+        <img
+          width={600}
+          // height={300}
+          src={project?.pic || "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"}
+          alt="placeholder"
+        />
+      </Box>
       <Box
         display={"flex"}
         justifyContent="space-between"
@@ -111,7 +124,7 @@ export default function Project() {
             borderRadius: 5,
             textTransform: "lowercase",
           }}>
-          {project?.status}
+          {getStatus(project!.status)}
         </Button>
       </Box>
       <Stack

@@ -18,6 +18,7 @@ export { default as updateProfile } from "./user/updateProfile";
 // Read
 export { default as fetchRequests } from "./user/fetchRequests";
 export { default as fetchUser } from "./user/fetchUser";
+export { default as fetchMyProjects } from "./user/fetchMyProjects";
 
 // saving user token
 export { default as setAuthToken } from "./setAuthToken";

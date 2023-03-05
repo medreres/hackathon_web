@@ -29,15 +29,18 @@ import useRequests from "../hooks/useRequests";
 import SelectForm from "../components/SelectForm";
 import { useAuthContext } from "../features/auth/context/auth-context";
 import { useNavigate } from "react-router-dom";
+import useMyProjects from "../hooks/useMyProjects";
 
 const Profile = () => {
   // const { profileId } = useParams();
   const { idToken } = useAuthContext();
   const [profile, isPending] = useProfile();
   const [requests, isRequestsPending, makeRequest] = useRequests();
+  const [projects, isProjectsPending] = useMyProjects();
   const navigate = useNavigate();
+  console.log(projects);
 
-  console.log(requests)
+  console.log(requests);
 
   // console.log(requests)
 
@@ -65,43 +68,43 @@ const Profile = () => {
     },
   ];
 
-  const projects = [
-    {
-      id: 1,
-      name: "Project 1",
-      description: "Description of Project 1",
-      status: "In Progress",
-      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
-    },
-    {
-      id: 2,
-      name: "Project 2",
-      description: "Description of Project 2",
-      status: "Completed",
-      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
-    },
-    {
-      id: 3,
-      name: "Project 1",
-      description: "Description of Project 1",
-      status: "In Progress",
-      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
-    },
-    {
-      id: 4,
-      name: "Project 2",
-      description: "Description of Project 2",
-      status: "Completed",
-      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
-    },
-    {
-      id: 5,
-      name: "Project 1",
-      description: "Description of Project 1",
-      status: "In Progress",
-      image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
-    },
-  ];
+  // const projects = [
+  //   {
+  //     id: 1,
+  //     name: "Project 1",
+  //     description: "Description of Project 1",
+  //     status: "In Progress",
+  //     image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Project 2",
+  //     description: "Description of Project 2",
+  //     status: "Completed",
+  //     image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Project 1",
+  //     description: "Description of Project 1",
+  //     status: "In Progress",
+  //     image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Project 2",
+  //     description: "Description of Project 2",
+  //     status: "Completed",
+  //     image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Project 1",
+  //     description: "Description of Project 1",
+  //     status: "In Progress",
+  //     image: "https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg",
+  //   },
+  // ];
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -334,15 +337,21 @@ const Profile = () => {
               <SelectForm />
             </Box>
             <Box padding="0">
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  name={project.name}
-                  description={project.description}
-                  status={project.status}
-                  image={project.image}
-                />
-              ))}
+              {isProjectsPending && <CircularProgress color="secondary" />}
+              {!isProjectsPending && (
+                <>
+                  {projects.map((project) => (
+                    <ProjectCard
+                      id={project.id}
+                      key={project.id}
+                      name={project.title}
+                      description={project.description}
+                      status={project.status}
+                      image={project.pic}
+                    />
+                  ))}
+                </>
+              )}
             </Box>
           </Box>
         )}
@@ -351,17 +360,19 @@ const Profile = () => {
             <Box sx={{ px: { xs: "0", md: "24px" }, py: "24px", display: "flex", justifyContent: "flex-end" }}>
               <FilterByStatus />
             </Box>
-            {requests?.map((request) => (
-              <Box padding="0">
-                <RequestCard
-                  key={request.id}
-                  id={request.id}
-                  name={request.title}
-                  description={request.description}
-                  status={request.status}
-                />
-              </Box>
-            ))}
+            {isRequestsPending && <CircularProgress color="secondary" />}
+            {!isRequestsPending &&
+              requests?.map((request) => (
+                <Box padding="0">
+                  <RequestCard
+                    key={request.id}
+                    id={request.id}
+                    name={request.title}
+                    description={request.description}
+                    status={request.status}
+                  />
+                </Box>
+              ))}
           </Box>
         )}
       </Grid>
